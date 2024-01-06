@@ -1,16 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Login from './component/login/login';
+import AuthComponent from './component/login/Auth';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter as Router } from "react-router-dom";
+import { SuiClientProvider } from "@mysten/dapp-kit";
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <Login/>
-        
-    </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <SuiClientProvider>
+        <Router>
+          <AuthComponent/>
+        </Router>
+      </SuiClientProvider>
+    </QueryClientProvider>
   );
 }
 
